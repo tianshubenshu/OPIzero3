@@ -4,3 +4,6 @@ oled_screen中文件的适配于SSD1306/1315 0.96寸oled屏幕
 apple—M/R/ttf为所使用的两种粗细字体，可自行更换    
 外壳1.0为初步绘制，有待改进  
 ![image](https://github.com/tianshubenshu/OPIzero3/blob/main/README/1.jpg)
+![image](https://github.com/tianshubenshu/OPIzero3/blob/main/README/2.jpg)
+![image](https://github.com/tianshubenshu/OPIzero3/blob/main/README/3.jpg)
+![image](https://github.com/tianshubenshu/OPIzero3/blob/main/README/4.jpg)
