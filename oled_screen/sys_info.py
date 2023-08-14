@@ -9,13 +9,6 @@ from PIL import Image, ImageDraw
 import os
 import subprocess
 
-# 要终止的进程名称
-process_name = "1.py"
-
-# 使用subprocess执行终止进程的命令
-subprocess.call(["pkill", "-f", process_name])
-
-
 
 i2c_bus_number = 3 #定义i2c总线
 first_run = True  # 标记是否第一次运行脚本
