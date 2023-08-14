@@ -9,6 +9,13 @@ from PIL import Image, ImageDraw
 import os
 import subprocess
 
+# 要终止的进程名称
+process_name = "1.py"
+
+# 使用subprocess执行终止进程的命令
+subprocess.call(["pkill", "-f", process_name])
+
+
 
 i2c_bus_number = 3 #定义i2c总线
 first_run = True  # 标记是否第一次运行脚本
@@ -26,7 +33,7 @@ def get_system_info():
     Disk = os.popen(cmd).read().strip()
     cmd = "hostname -I | cut -d' ' -f1"
     IP = os.popen(cmd).read().strip()
-    cmd = "cat /sys/class/thermal/thermal_zone0/temp | awk '{printf \"%.1f\", $0/1000}'"
+    cmd = "cat /sys/class/thermal/thermal_zone2/temp | awk '{printf \"%.1f\", $0/1000}'"
     cput = subprocess.check_output(cmd, shell=True).decode('utf-8')
     return CPU, MemUsage, Disk, IP, cput
 
@@ -87,6 +94,16 @@ def main():
 
     # 主循环
     while True:
+    # 获取当前时间
+        now = datetime.datetime.now()
+        current_hour = now.hour
+
+        # 如果当前时间在23点至6点之间，关闭屏幕
+        if 23 <= current_hour or current_hour < 6:
+            device.hide()  # 关闭屏幕
+        else:
+            device.show()  # 开启屏幕
+            
         if not poweron_displayed:       # 如果尚未显示开机信息
             show_poweron_text(draw, font_Big, width, height)
             poweron_displayed = True
@@ -117,27 +134,6 @@ def main():
                # 绘制分隔线
                draw.line((0, 17.5, width, 17.5), fill=255)
                pass
-            else:
-               current_time = datetime.datetime.now().strftime("%H:%M:%S")
-               # 计算开机运行时间
-               uptime = datetime.datetime.now() - boot_time_datetime
-
-               draw.rectangle((0, 0, width - 1, height - 1), outline=0, fill=0)
-               top = 0
-               draw.text((0, top), "OrangePi Zero 3", font=font_large, fill=255)
-               top += 18
-               draw.text((0, top), "Local Time: " + current_time, font=font_small, fill=255)
-               top += 12
-               draw.text((0, top), f"Uptime: {format_uptime(uptime)}", font=font_small, fill=255)
-               draw.line((0, 17.5, width, 17.5), fill=255)
-               top += 16
-               draw.text((32, top), f"田鼠本鼠", font=font_large, fill=255)
-               pass
-        # 如果距离上次切换时间超过10秒，切换状态
-        if time.time() - last_switch_time >= 10:
-            showing_system_info = not showing_system_info
-            last_switch_time = time.time()
-
 
 
         # 在 OLED 屏幕上显示图像
