@@ -14,7 +14,7 @@ M2*10圆头螺丝+螺母x4
 
 M3*6圆头螺丝x4  
 
-M3*6+6尼龙螺柱+M3尼龙螺母x4
+M3*6+6尼龙螺柱+M3尼龙螺母x4  
 <img src="https://github.com/tianshubenshu/OPIzero3/blob/main/README/1.jpg" width="500px">  
 <img src="https://github.com/tianshubenshu/OPIzero3/blob/main/README/3.jpg" width="500px">  
 <img src="https://github.com/tianshubenshu/OPIzero3/blob/main/README/4.jpg" width="500px">  
